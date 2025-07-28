@@ -2,7 +2,7 @@ CXX= c++
 FLAGSXX = -Wextra  -Werror -Wall -std=c++98 -g
 INCLUDE = -I include
 NAME = span
-SRC = src/main.cpp
+SRC = src/main.cpp src/Span.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

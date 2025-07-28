@@ -6,7 +6,7 @@
 /*   By: enetxeba <enetxeba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 09:13:38 by enetxeba          #+#    #+#             */
-/*   Updated: 2025/07/28 10:44:37 by enetxeba         ###   ########.fr       */
+/*   Updated: 2025/07/28 11:31:21 by enetxeba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,36 @@
 #include <algorithm>
 #include <stdexcept>
 
-template <typename Container = std::vector<int> >
 class Span
 {
     private:
-        Container _span;
+        std::vector<int> _span;
         unsigned int _size;
         Span();
     public:
         Span(unsigned int n);
-        Span(const Span<Container>& other);
-        Span<Container>& operator = (const Span<Container>& other);
+        Span(const Span& other);
+        Span& operator = (const Span& other);
         ~Span();
        
-        void addNumber(int inser);
-        int shortestSpan()const ;
-        int longestSpan() const ;
+        void    addNumber(int inser);
+        void    addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        int     shortestSpan()const ;
+        int     longestSpan() const ;
 
-        
+        class FullContainerException : public std::exception
+        {
+            public:
+                virtual const char *what() const throw();
+        };
+
+        class NotEnoughNumbersException : public std::exception
+        {
+            public:
+                virtual const char *what() const throw();
+        };
+
 };
 
-typedef Span<std::vector<int> > IntSpan;
-#include "Span.tpp"
 
 

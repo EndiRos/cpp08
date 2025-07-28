@@ -6,70 +6,83 @@
 /*   By: enetxeba <enetxeba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 09:14:37 by enetxeba          #+#    #+#             */
-/*   Updated: 2025/07/28 10:58:06 by enetxeba         ###   ########.fr       */
+/*   Updated: 2025/07/28 11:30:18 by enetxeba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <vector>
-#include <list>
-#include <deque>
 #include "Span.hpp"
+#include <cstdlib>
+#include <iostream>
 
-//me he venido arriba, admnite cualquier tipo de container, independienteente que sea vector list u otro tipo
 
 int main()
 {
-Span<> sp = Span<>(5);
-sp.addNumber(6);
-sp.addNumber(3);
-sp.addNumber(17);
-sp.addNumber(9);
-sp.addNumber(11);
-std::cout << sp.shortestSpan() << std::endl;
-std::cout << sp.longestSpan() << std::endl;
-return 0;
+	std::cout << "\033[33m" << "Test vector container\n"<< "\033[0m";
+	Span sp = Span(5);
+	sp.addNumber(5);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	try
+	{
+		sp.addNumber(11);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		std::cout << "shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "longest span: " << sp.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+
+	std::cout << "\033[33m" << "Test vector range\n"<< "\033[0m";
+	Span sp2 = Span(100);
+	std::vector<int> v;
+	std::srand(time(NULL));
+	for (int i = 0; i < 100; i++)
+	{
+		
+		int random_int = rand() % 1000000;
+		v.push_back(random_int);
+	}
+	try
+	{
+		sp2.addNumber(v.begin(), v.end());
+		std::cout << "shortest span: " << sp2.shortestSpan() << std::endl;
+		std::cout << "longest span: " << sp2.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+
+	std::cout << "\033[33m" << "Test vector large range\n"<< "\033[0m";
+	Span sp3 = Span(100000);
+	std::vector<int> v2;
+	std::srand(time(NULL));
+	for (int i = 0; i < 100000; i++)
+	{
+		
+		int random_int = rand() % 1000000000;
+		v2.push_back(random_int);
+	}
+	try
+	{
+		sp3.addNumber(v2.begin(), v2.end());
+		std::cout << "shortest span: " << sp3.shortestSpan() << std::endl;
+		std::cout << "longest span: " << sp3.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
-
-/* int main() {
-    try {
-        std::cout << "--- Prueba con std::vector<int> ---" << std::endl;
-        Span<std::vector<int> > spanVec(5);
-        spanVec.addNumber(6);
-        spanVec.addNumber(3);
-        spanVec.addNumber(17);
-        spanVec.addNumber(9);
-        spanVec.addNumber(11);
-
-        std::cout << "Shortest span: " << spanVec.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << spanVec.longestSpan() << std::endl;
-
-        std::cout << "\n--- Prueba con std::list<int> ---" << std::endl;
-        Span<std::list<int> > spanList(4);
-        spanList.addNumber(50);
-        spanList.addNumber(10);
-        spanList.addNumber(40);
-        spanList.addNumber(30);
-
-        std::cout << "Shortest span: " << spanList.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << spanList.longestSpan() << std::endl;
-
-        std::cout << "\n--- Prueba con std::deque<int> ---" << std::endl;
-        Span<std::deque<int> > spanDeque(3);
-        spanDeque.addNumber(1);
-        spanDeque.addNumber(1000);
-        spanDeque.addNumber(500);
-
-        std::cout << "Shortest span: " << spanDeque.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << spanDeque.longestSpan() << std::endl;
-
-        std::cout << "\n--- Prueba de excepción (contenedor lleno) ---" << std::endl;
-        spanVec.addNumber(42); // Esto debería lanzar una excepción
-
-    } catch (const std::exception& e) {
-        std::cerr << "Excepción capturada: " << e.what() << std::endl;
-    }
-
-    return 0;
-}
- */
