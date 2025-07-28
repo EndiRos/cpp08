@@ -6,7 +6,7 @@
 /*   By: enetxeba <enetxeba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 09:13:38 by enetxeba          #+#    #+#             */
-/*   Updated: 2025/07/28 10:16:20 by enetxeba         ###   ########.fr       */
+/*   Updated: 2025/07/28 10:44:37 by enetxeba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Span
         
 };
 
+typedef Span<std::vector<int> > IntSpan;
 #include "Span.tpp"
 
 

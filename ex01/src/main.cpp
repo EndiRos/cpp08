@@ -6,7 +6,7 @@
 /*   By: enetxeba <enetxeba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 09:14:37 by enetxeba          #+#    #+#             */
-/*   Updated: 2025/07/28 09:58:29 by enetxeba         ###   ########.fr       */
+/*   Updated: 2025/07/28 10:58:06 by enetxeba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,22 @@
 #include <deque>
 #include "Span.hpp"
 
-int main() {
+//me he venido arriba, admnite cualquier tipo de container, independienteente que sea vector list u otro tipo
+
+int main()
+{
+Span<> sp = Span<>(5);
+sp.addNumber(6);
+sp.addNumber(3);
+sp.addNumber(17);
+sp.addNumber(9);
+sp.addNumber(11);
+std::cout << sp.shortestSpan() << std::endl;
+std::cout << sp.longestSpan() << std::endl;
+return 0;
+}
+
+/* int main() {
     try {
         std::cout << "--- Prueba con std::vector<int> ---" << std::endl;
         Span<std::vector<int> > spanVec(5);
@@ -57,3 +72,4 @@ int main() {
 
     return 0;
 }
+ */
